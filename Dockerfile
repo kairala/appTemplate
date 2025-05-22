@@ -56,4 +56,4 @@ COPY --from=builder --chown=nest:nodejs /app/nest-cli.json .
 COPY --from=builder --chown=nest:nodejs /app/dist ./dist
 COPY --from=dependencies --chown=remix:nodejs /app/node_modules ./node_modules
 
-CMD ["node", "./dist/main"]
+CMD ["node", "./dist/src/main"]
