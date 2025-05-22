@@ -8,11 +8,16 @@ import { StripeCustomer } from '../../db/models/user/stripeCustomer.model';
 import { User } from '../../db/models/user/user.model';
 import { CreateSubscriptionIntentController } from './controllers/createSubscriptionIntent/controller';
 import { CreateSubscriptionIntentUseCase } from './useCases/createSubscriptionIntent/useCase';
+import { WebhookController } from './controllers/webhook/controller';
+import { InvoicePaidUseCase } from './useCases/webhook/invoicePaid.useCase';
+import { InvoicePaymentFailedUseCase } from './useCases/webhook/invoicePaymentFailed.useCase';
+import { SubscriptionDeletedUseCase } from './useCases/webhook/subscriptionDeleted.useCase';
 
 @Module({
   controllers: [
     GetAvailableProductsController,
     CreateSubscriptionIntentController,
+    WebhookController,
   ],
   providers: [
     {
@@ -26,6 +31,9 @@ import { CreateSubscriptionIntentUseCase } from './useCases/createSubscriptionIn
       },
     },
     CreateSubscriptionIntentUseCase,
+    InvoicePaidUseCase,
+    InvoicePaymentFailedUseCase,
+    SubscriptionDeletedUseCase,
   ],
   imports: [SequelizeModule.forFeature([StripeCustomer, User])],
   exports: [
