@@ -6,6 +6,7 @@ import { ConfirmationToken } from './models/user/confirmationToken.model';
 import { ForgotPasswordToken } from './models/user/forgotPasswordToken.model';
 import { RefreshToken } from './models/user/refreshToken.model';
 import { StorageFile } from './models/storage/storageFile.model';
+import { StripeCustomer } from './models/user/stripeCustomer.model';
 
 @Module({
   controllers: [],
@@ -40,6 +41,7 @@ import { StorageFile } from './models/storage/storageFile.model';
             ConfirmationToken,
             ForgotPasswordToken,
             RefreshToken,
+            StripeCustomer,
             StorageFile,
           ],
           sync: {

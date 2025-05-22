@@ -11,6 +11,8 @@ import {
   Default,
   Index,
   HasMany,
+  HasOne,
+  AfterCreate,
 } from 'sequelize-typescript';
 import { ProviderEnum } from './provider.enum';
 import * as bcrypt from 'bcrypt';
@@ -18,6 +20,7 @@ import { ConfirmationToken } from './confirmationToken.model';
 import { ForgotPasswordToken } from './forgotPasswordToken.model';
 import { RefreshToken } from './refreshToken.model';
 import { StorageFile } from '../storage/storageFile.model';
+import { StripeCustomer } from './stripeCustomer.model';
 
 @Table({
   tableName: 'users',
@@ -88,6 +91,12 @@ export class User extends Model {
   })
   declare storageFiles: StorageFile[];
 
+  @HasOne(() => StripeCustomer, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  declare stripeCustomer: StripeCustomer;
+
   public async validatePassword(password: string) {
     if (!this.password) {
       return false;
@@ -96,5 +105,16 @@ export class User extends Model {
     const passwordCompared = await bcrypt.compare(password, this.password);
 
     return passwordCompared;
+  }
+
+  @AfterCreate({ name: 'create_stripe_customer' })
+  static async createStripeCustomer(instance: User, options: any) {
+    await StripeCustomer.create(
+      {
+        userId: instance.id,
+        currentPlan: 'free',
+      },
+      { transaction: options.transaction },
+    );
   }
 }

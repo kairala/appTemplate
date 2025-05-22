@@ -20,4 +20,6 @@ export type ENV_TYPE = {
   GOOGLE_CLIENT_SECRET: string;
   API_HOST: string;
   CLOUDFRONT_URL: string;
+  STRIPE_SECRET_KEY: string;
+  STRIPE_WEBHOOK_SECRET: string;
 };

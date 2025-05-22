@@ -17,6 +17,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { MailModule } from './modules/mail/mail.module';
 import { StorageModule } from './modules/storage/storage.module';
 import { SentryModule } from '@sentry/nestjs/setup';
+import { StripeModule } from './modules/stripe/stripe.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { SentryModule } from '@sentry/nestjs/setup';
     HealthModule,
     MailModule,
     AuthModule,
+    StripeModule,
     StorageModule,
   ],
   controllers: [],

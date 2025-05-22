@@ -7,12 +7,30 @@ module.exports = {
     // @ts-expect-error -- Sequelize CLI does not support TypeScript
     await queryInterface.sequelize.transaction(async (transaction) => {
       await queryInterface.createTable(
-        'refresh_tokens',
+        'stripe_customers',
         {
           id: {
             type: Sequelize.DataTypes.UUID,
-            defaultValue: Sequelize.DataTypes.UUIDV4,
+            defaultValue: Sequelize.literal('gen_random_uuid()'),
             primaryKey: true,
+          },
+          customer_id: {
+            type: Sequelize.DataTypes.STRING,
+            allowNull: true,
+          },
+          subscription_id: {
+            type: Sequelize.DataTypes.STRING,
+            allowNull: true,
+          },
+          subscription_wont_renew: {
+            type: Sequelize.DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false,
+          },
+          current_plan: {
+            type: Sequelize.DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'free',
           },
           user_id: {
             type: Sequelize.DataTypes.UUID,
@@ -23,14 +41,6 @@ module.exports = {
             },
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE',
-          },
-          token: {
-            type: Sequelize.DataTypes.TEXT,
-            allowNull: false,
-          },
-          expires_at: {
-            type: Sequelize.DataTypes.DATE,
-            allowNull: false,
           },
           created_at: {
             type: Sequelize.DataTypes.DATE,
@@ -46,14 +56,20 @@ module.exports = {
         { transaction },
       );
 
-      await queryInterface.addIndex('refresh_tokens', ['user_id'], {
+      await queryInterface.addIndex('stripe_customers', ['user_id'], {
         transaction,
-        name: 'refresh_tokens_user_id_idx',
+        name: 'stripe_customers_user_id_idx',
+        unique: true,
       });
 
-      await queryInterface.addIndex('refresh_tokens', ['token'], {
+      await queryInterface.addIndex('stripe_customers', ['customer_id'], {
         transaction,
-        name: 'refresh_tokens_token_idx',
+        name: 'stripe_customers_customer_id_idx',
+      });
+
+      await queryInterface.addIndex('stripe_customers', ['subscription_id'], {
+        transaction,
+        name: 'stripe_customers_subscription_id_idx',
       });
     });
   },
@@ -64,20 +80,27 @@ module.exports = {
     // @ts-expect-error -- Sequelize CLI does not support TypeScript
     await queryInterface.sequelize.transaction(async (transaction) => {
       await queryInterface.removeIndex(
-        'refresh_tokens',
-        'idx_refresh_tokens_user_id',
+        'stripe_customers',
+        'stripe_customers_user_id_idx',
         {
           transaction,
         },
       );
       await queryInterface.removeIndex(
-        'refresh_tokens',
-        'idx_refresh_tokens_token',
+        'stripe_customers',
+        'stripe_customers_customer_id_idx',
         {
           transaction,
         },
       );
-      await queryInterface.dropTable('refresh_tokens', { transaction });
+      await queryInterface.removeIndex(
+        'stripe_customers',
+        'stripe_customers_subscription_id_idx',
+        {
+          transaction,
+        },
+      );
+      await queryInterface.dropTable('stripe_customers', { transaction });
     });
   },
 };

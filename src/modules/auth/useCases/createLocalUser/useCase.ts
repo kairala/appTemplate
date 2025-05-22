@@ -16,7 +16,7 @@ export class CreateLocalUserUseCase
 {
   constructor(
     private readonly sequelize: Sequelize,
-    @InjectModel(User) private readonly userMode: typeof User,
+    @InjectModel(User) private readonly userModel: typeof User,
     private readonly i18nService: I18nService,
     private readonly createConfirmationTokenUseCase: CreateConfirmationTokenUseCase,
   ) {}
@@ -40,7 +40,7 @@ export class CreateLocalUserUseCase
   ): Promise<void> {
     const hashedPassword = await bcrypt.hash(request.password, 10);
 
-    const existingUser = await this.userMode.findOne({
+    const existingUser = await this.userModel.findOne({
       where: { email: request.email },
       transaction,
       useMaster: true,
@@ -52,7 +52,7 @@ export class CreateLocalUserUseCase
       );
     }
 
-    await this.userMode.create(
+    await this.userModel.create(
       {
         email: request.email,
         name: request.name,

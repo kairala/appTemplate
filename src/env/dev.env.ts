@@ -27,4 +27,7 @@ export const devEnv: ENV_TYPE = {
   API_HOST: process.env.API_HOST || 'http://localhost:3030',
   AWS_BUCKET_NAME: process.env.AWS_BUCKET_NAME || 'your_bucket_name',
   CLOUDFRONT_URL: process.env.CLOUDFRONT_URL || 'your_cloudfront_url',
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || 'your_stripe_secret_key',
+  STRIPE_WEBHOOK_SECRET:
+    process.env.STRIPE_WEBHOOK_SECRET || 'your_stripe_webhook_secret',
 };

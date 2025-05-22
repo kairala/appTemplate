@@ -28,6 +28,9 @@ import { GoogleSuccessController } from './controllers/googleSuccess/controller'
 import { RefreshToken } from '../../db/models/user/refreshToken.model';
 import { RefreshUseCase } from './useCases/refresh/useCase';
 import { RefreshController } from './controllers/refresh/controller';
+import { StripeCustomer } from '../../db/models/user/stripeCustomer.model';
+import { MeUseCase } from './useCases/me/useCase';
+import { MeController } from './controllers/me/controller';
 
 @Module({
   imports: [
@@ -46,6 +49,7 @@ import { RefreshController } from './controllers/refresh/controller';
       ConfirmationToken,
       ForgotPasswordToken,
       RefreshToken,
+      StripeCustomer,
     ]),
     MailModule,
   ],
@@ -59,6 +63,7 @@ import { RefreshController } from './controllers/refresh/controller';
     GoogleRedirectController,
     GoogleSuccessController,
     RefreshController,
+    MeController,
   ],
   providers: [
     CreateLocalUserUseCase,
@@ -69,6 +74,7 @@ import { RefreshController } from './controllers/refresh/controller';
     CreateForgotPasswordTokenUseCase,
     UpdatePasswordByTokenUseCase,
     RefreshUseCase,
+    MeUseCase,
     LocalStrategy,
     JwtStrategy,
     GoogleStrategy,
