@@ -1,0 +1,23 @@
+export type ENV_TYPE = {
+  PORT: number;
+  LOG_LEVEL: string;
+  NODE_ENV: string;
+  TZ: string;
+  DATABASE_HOST: string;
+  DATABASE_PORT: number;
+  DATABASE_USER: string;
+  DATABASE_PASSWORD: string;
+  DATABASE_NAME: string;
+  JWT_SECRET: string;
+  JWT_ACCESS_TOKEN_EXPIRES_IN: number;
+  JWT_REFRESH_TOKEN_EXPIRES_IN: number;
+  EMAIL_USE_LOCAL_LOGGER?: boolean;
+  FROM_EMAIL: string;
+  AWS_REGION: string;
+  AWS_BUCKET_NAME: string;
+  APP_URL: string;
+  GOOGLE_CLIENT_ID: string;
+  GOOGLE_CLIENT_SECRET: string;
+  API_HOST: string;
+  CLOUDFRONT_URL: string;
+};

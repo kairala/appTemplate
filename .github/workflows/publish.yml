@@ -1,0 +1,37 @@
+name: Publish Docker Image to ECR
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-and-push-api:
+    name: Build and Push Docker Image (Backend)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker Image (API)
+        run: |
+          IMAGE_TAG=${GITHUB_REF_NAME}
+          docker build --build-arg SENTRY_AUTH_TOKEN_ARG=${{ secrets.SENTRY_AUTH_TOKEN }} -t ${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG .
+
+      - name: Push Docker Image to ECR (Backend)
+        run: |
+          IMAGE_TAG=${GITHUB_REF_NAME}
+          docker tag ${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG
