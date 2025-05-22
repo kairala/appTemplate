@@ -7,6 +7,7 @@ import { ForgotPasswordToken } from './models/user/forgotPasswordToken.model';
 import { RefreshToken } from './models/user/refreshToken.model';
 import { StorageFile } from './models/storage/storageFile.model';
 import { StripeCustomer } from './models/user/stripeCustomer.model';
+import { Caption } from './models/caption/caption.model';
 
 @Module({
   controllers: [],
@@ -43,6 +44,7 @@ import { StripeCustomer } from './models/user/stripeCustomer.model';
             RefreshToken,
             StripeCustomer,
             StorageFile,
+            Caption,
           ],
           sync: {
             alter: false,
