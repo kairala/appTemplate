@@ -25,8 +25,10 @@ export class Caption extends Model {
   @Column({ type: DataType.UUID })
   declare id: string;
 
+  @Column({ type: DataType.STRING, allowNull: false })
   declare text: string;
 
+  @Column({ type: DataType.STRING, allowNull: false })
   declare usedPrompt: string;
 
   @NotNull
@@ -44,6 +46,21 @@ export class Caption extends Model {
 
   @BelongsTo(() => User)
   declare user?: User;
+
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  declare processingTime: number;
+
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare style: string;
+
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare network: string;
+
+  @Column({ type: DataType.ARRAY(DataType.STRING), allowNull: true })
+  declare keywords: string[];
+
+  @Column({ type: DataType.ARRAY(DataType.STRING), allowNull: true })
+  declare labels: string[];
 
   @NotNull
   @Column({ allowNull: false })

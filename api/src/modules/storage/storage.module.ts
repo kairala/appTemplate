@@ -11,6 +11,6 @@ import { UploadFileController } from './controller/upload/controller';
   controllers: [UploadFileController, DownloadFileController],
   providers: [UploadFileUseCase, ShowFileUseCase, GetFileAsStringUseCase],
   imports: [SequelizeModule.forFeature([StorageFile])],
-  exports: [UploadFileUseCase, GetFileAsStringUseCase],
+  exports: [UploadFileUseCase, GetFileAsStringUseCase, ShowFileUseCase],
 })
 export class StorageModule {}

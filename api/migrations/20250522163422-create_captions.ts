@@ -42,6 +42,29 @@ module.exports = {
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE',
           },
+          processing_time: {
+            type: Sequelize.DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0,
+          },
+          style: {
+            type: Sequelize.DataTypes.STRING(20),
+            allowNull: true,
+          },
+          network: {
+            type: Sequelize.DataTypes.STRING(20),
+            allowNull: true,
+          },
+          keywords: {
+            type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.STRING(20)),
+            allowNull: true,
+            defaultValue: [],
+          },
+          labels: {
+            type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.STRING(100)),
+            allowNull: true,
+            defaultValue: [],
+          },
           created_at: {
             type: Sequelize.DataTypes.DATE,
             allowNull: false,

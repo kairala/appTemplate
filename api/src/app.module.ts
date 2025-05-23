@@ -18,6 +18,7 @@ import { MailModule } from './modules/mail/mail.module';
 import { StorageModule } from './modules/storage/storage.module';
 import { SentryModule } from '@sentry/nestjs/setup';
 import { StripeModule } from './modules/stripe/stripe.module';
+import { CaptionModule } from './modules/modules/caption/caption.module';
 
 @Module({
   imports: [
@@ -71,6 +72,7 @@ import { StripeModule } from './modules/stripe/stripe.module';
     AuthModule,
     StripeModule,
     StorageModule,
+    CaptionModule,
   ],
   controllers: [],
   providers: [

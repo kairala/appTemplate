@@ -30,4 +30,8 @@ export const devEnv: ENV_TYPE = {
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || 'your_stripe_secret_key',
   STRIPE_WEBHOOK_SECRET:
     process.env.STRIPE_WEBHOOK_SECRET || 'your_stripe_webhook_secret',
+  GOOGLE_CREDENTIALS_JSON_PATH:
+    process.env.GOOGLE_CREDENTIALS_JSON_PATH ||
+    'your_google_credentials_json_path',
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY || 'your_openai_api_key',
 };

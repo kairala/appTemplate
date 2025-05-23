@@ -31,6 +31,7 @@ import { RefreshController } from './controllers/refresh/controller';
 import { StripeCustomer } from '../../db/models/user/stripeCustomer.model';
 import { MeUseCase } from './useCases/me/useCase';
 import { MeController } from './controllers/me/controller';
+import { Caption } from '../../db/models/caption/caption.model';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { MeController } from './controllers/me/controller';
       ForgotPasswordToken,
       RefreshToken,
       StripeCustomer,
+      Caption,
     ]),
     MailModule,
   ],

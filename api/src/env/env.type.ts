@@ -22,4 +22,6 @@ export type ENV_TYPE = {
   CLOUDFRONT_URL: string;
   STRIPE_SECRET_KEY: string;
   STRIPE_WEBHOOK_SECRET: string;
+  GOOGLE_CREDENTIALS_JSON_PATH: string;
+  OPENAI_API_KEY: string;
 };

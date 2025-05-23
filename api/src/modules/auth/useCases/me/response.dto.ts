@@ -7,4 +7,6 @@ export class MeResponseDto {
   verified: boolean;
 
   plan: PlanEnum;
+
+  usedCaptionsToday: number;
 }
