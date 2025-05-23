@@ -9,12 +9,17 @@ import { AuthProviderWrapper } from "@/components/auth";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const { locale, messages } = useGetI18nMessages();
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   return (
     <NextThemesProvider defaultTheme="system">
       <AuthProviderWrapper>
         <QueryProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextIntlClientProvider
+            locale={locale}
+            messages={messages}
+            timeZone={timeZone}
+          >
             {children}
           </NextIntlClientProvider>
         </QueryProvider>

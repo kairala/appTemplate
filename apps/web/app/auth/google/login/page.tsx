@@ -2,12 +2,10 @@
 
 import { ROUTES } from "@/src/config/routes";
 import useAuthSession from "@workspace/integration/adapters/authSessionProvider";
-import { useTranslations } from "next-intl";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function GoogleLoginPage() {
-  const t = useTranslations("auth.resetPassword");
   const { setAccessToken, setRefreshToken } = useAuthSession();
   const router = useRouter();
 
@@ -26,6 +24,7 @@ export default function GoogleLoginPage() {
 
       router.push(ROUTES.HOME);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken, refreshToken]);
 
   return null;

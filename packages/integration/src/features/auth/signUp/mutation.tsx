@@ -1,10 +1,10 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { useAxios } from "@workspace/integration/adapters/useAxios.js";
-import { BaseResponseType } from "@workspace/integration/types/baseResponse.js";
-import { ErrorResponseType } from "@workspace/integration/types/errorResponse.js";
-import { NoResponse } from "@workspace/integration/types/noResponse.js";
+import { useAxios } from "@workspace/integration/adapters/useAxios";
+import { BaseResponseType } from "@workspace/integration/types/baseResponse";
+import { ErrorResponseType } from "@workspace/integration/types/errorResponse";
+import { NoResponse } from "@workspace/integration/types/noResponse";
 
 import { AxiosError, AxiosResponse } from "axios";
 

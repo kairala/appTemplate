@@ -68,7 +68,7 @@ export const AppSidebar = () => {
   const t = useTranslations("actions");
   const router = useRouter();
 
-  const me = meData?.data.data.me;
+  const me = meData?.data.data;
 
   return (
     <Sidebar>

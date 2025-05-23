@@ -28,6 +28,7 @@ export default function SignUpConfirmPage() {
     if (token) {
       confirmAccountMutation.mutate({ token });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   if (!token) {

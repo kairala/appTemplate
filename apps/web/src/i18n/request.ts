@@ -6,7 +6,6 @@ const locales = {
 };
 
 export default getRequestConfig(async () => {
-  console.log("Requesting i18n messages...");
   const locale = "en";
 
   return {

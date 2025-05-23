@@ -1,6 +1,6 @@
 "use client";
 
-import useAuthSession from "@workspace/integration/adapters/authSessionProvider.js";
+import useAuthSession from "@workspace/integration/adapters/authSessionProvider";
 import axios from "axios";
 import { useCallback, useEffect } from "react";
 
@@ -20,9 +20,12 @@ export const useAxios = () => {
       const response = await axios.post<{
         accessToken: string;
         refreshToken: string;
-      }>(`${process.env.EXPO_PUBLIC_API_URL}/auth/refresh-token`, {
-        refreshToken,
-      });
+      }>(
+        `${process.env.EXPO_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
+        {
+          refreshToken,
+        }
+      );
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
         response.data;

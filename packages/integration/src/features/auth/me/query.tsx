@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAxios } from "@workspace/integration/adapters/useAxios.js";
-import { BaseResponseType } from "@workspace/integration/types/baseResponse.js";
+import { useAxios } from "@workspace/integration/adapters/useAxios";
+import { BaseResponseType } from "@workspace/integration/types/baseResponse";
+import { AxiosResponse } from "axios";
 
 export type Plans = "gold" | "platinum" | "free";
 
@@ -17,7 +18,7 @@ export const buildShowMeQueryKey = () => ["showMe"];
 export const useShowMeQuery = () => {
   const axios = useAxios();
 
-  return useQuery<BaseResponseType<ShowMeResponseType>>({
+  return useQuery<AxiosResponse<BaseResponseType<ShowMeResponseType>>>({
     queryKey: buildShowMeQueryKey(),
     queryFn: () => axios.get(`auth/me`),
     retry: true,
