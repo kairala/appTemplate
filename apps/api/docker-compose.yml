@@ -1,0 +1,17 @@
+services:
+  database.template.local:
+    container_name: database.template.local
+    image: abuiliazeed/postgresmultidb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_MULTIPLE_DATABASES=template_development,template_test
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d template_development']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - './data/database:/var/lib/postgresql/data:rw'
+    ports:
+      - 5431:5432

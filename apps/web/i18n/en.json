@@ -1,0 +1,101 @@
+{
+  "google": {
+    "signIn": "Sign in with Google"
+  },
+  "actions": {
+    "logout": "Logout",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add",
+    "view": "View",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "next": "Next",
+    "previous": "Previous",
+    "confirm": "Confirm",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "close": "Close",
+    "download": "Download",
+    "upload": "Upload",
+    "copy": "Copy",
+    "paste": "Paste",
+    "select": "Select",
+    "deselect": "Deselect",
+    "refresh": "Refresh"
+  },
+  "theme": {
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "systemDefault": "System Default",
+    "select": "Select Theme"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Sign In",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign Up"
+    },
+    "signUp": {
+      "title": "Sign Up",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "agree": "By signing up, you agree to our Terms of Service and Privacy Policy.",
+      "name": "Name",
+      "submit": "Sign Up",
+      "signIn": "Sign In"
+    },
+    "signUpSuccess": {
+      "title": "Sign Up Successful",
+      "message": "You have successfully signed up. Please check your email to verify your account.",
+      "signIn": "Sign In"
+    },
+    "confirmAccount": {
+      "tokenNotFound": "Token not found",
+      "tokenNotFoundMessage": "The token you provided was not found. Please check the link in your email.",
+      "loadingTitle": "We are verifying your account",
+      "loadingMessage": "Please wait while we verify your account...",
+      "errorTitle": "The token is invalid",
+      "errorMessage": "The token you provided is invalid. Please check the link in your email.",
+      "successTitle": "Account Verified",
+      "successMessage": "Your account has been successfully verified. You can now sign in.",
+      "signIn": "Sign In"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "email": "Email",
+      "submit": "Send Reset Link",
+      "signIn": "Sign In"
+    },
+    "forgotPasswordSuccess": {
+      "title": "Reset Link Sent",
+      "message": "A reset link has been sent to your email. Please check your inbox.",
+      "signIn": "Sign In"
+    },
+    "resetPassword": {
+      "tokenNotFound": "Token not found",
+      "tokenNotFoundMessage": "The token you provided was not found. Please check the link in your email.",
+      "title": "Reset Password",
+      "email": "Email",
+      "password": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Reset Password",
+      "signIn": "Sign In"
+    },
+    "resetPasswordSuccess": {
+      "title": "Password Reset Successful",
+      "message": "Your password has been successfully reset. You can now sign in with your new password.",
+      "signIn": "Sign In"
+    }
+  }
+}

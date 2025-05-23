@@ -1,0 +1,17 @@
+{
+  "NOT_EMPTY": "{property} cannot be empty",
+  "INVALID_EMAIL": "email is invalid",
+  "INVALID_BOOLEAN": "{property} is not a boolean",
+  "MIN": "{property} with value: \"{value}\" needs to be at least {constraints.0}",
+  "MAX": "{property} with value: \"{value}\" needs to be less than {constraints.0}",
+  "MIN_LENGTH": "{property} must be longer than or equal to {constraints.0} characters",
+  "MAX_LENGTH": "{property}  must be shorter than or equal to {constraints.0} characters",
+  "IS_STRING": "{property} must be a string",
+  "IS_ENUM": "{property} must be one of the following values: {possibleValues}",
+  "NUMBER_STRING": "{property} must be a number string",
+  "IS_DEFINED": "{property} should not be null or undefined",
+  "IS_UUID": "{property} must be a valid UUID",
+  "IS_LATITUDE": "{property} must be a valid latitude",
+  "IS_LONGITUDE": "{property} must be a valid longitude",
+  "EMAIL": "{property} must be a valid email"
+}
