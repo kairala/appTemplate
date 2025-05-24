@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "@providers/ui/theme-provider";
 import { QueryProvider } from "@workspace/integration/adapters/queryProvider";

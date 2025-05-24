@@ -1,0 +1,10 @@
+export const adUnits = {
+  BANNER: {
+    IOS: "ca-app-pub-9184686440494791/3329398540",
+    ANDROID: "ca-app-pub-9184686440494791/2608485459",
+  },
+  INTERISTICAL: {
+    IOS: "ca-app-pub-9184686440494791/2687250777",
+    ANDROID: "ca-app-pub-9184686440494791/3533412677",
+  },
+};

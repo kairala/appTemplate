@@ -84,6 +84,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     };
 
     loadStoredAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isAccessExpired = useMemo(() => {
@@ -92,7 +93,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     }
 
     const payload = jwtDecode(state.accessToken);
-    const { exp, iat } = payload as { exp: number; iat: number };
+    const { exp } = payload as { exp: number; iat: number };
     const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
     const isExpired = exp < currentTime - 60 * 5; // 5 minutes
 
@@ -105,7 +106,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     }
 
     const payload = jwtDecode(state.refreshToken);
-    const { exp, iat } = payload as { exp: number; iat: number };
+    const { exp } = payload as { exp: number; iat: number };
     const currentTime = Math.floor(Date.now() / 1000);
     const isExpired = exp < currentTime;
 
