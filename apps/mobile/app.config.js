@@ -12,13 +12,13 @@ export default {
     ios: {
       usesAppleSignIn: true,
       supportsTablet: true,
-      bundleIdentifier: "<YOUR_BUNDLE_IDENTIFIER>",
+      bundleIdentifier: "br.com.kairala.template",
       config: {
         usesNonExemptEncryption: false,
       },
     },
     android: {
-      package: "<YOUR_PACKAGE_NAME>",
+      package: "br.com.kairala.template",
       edgeToEdgeEnabled: true,
       adaptiveIcon: {
         foregroundImage: "./assets/images/adaptive-icon.png",
@@ -45,15 +45,15 @@ export default {
             "Permirtir o uso do Face ID para desbloquear o aplicativo Legendei.",
         },
       ],
-      // [
-      //   "expo-image-picker",
-      //   {
-      //     photosPermission:
-      //       "Template usa imagens para podermos gerar legendas para você. Suas fotos serão armazenadas de forma segura e não serão compartilhadas com ninguém.",
-      //     cameraPermission:
-      //       "Template usa a câmera para tirar fotos e podermos gerar legendas para você. Suas fotos serão armazenadas de forma segura e não serão compartilhadas com ninguém.",
-      //   },
-      // ],
+      [
+        "expo-image-picker",
+        {
+          photosPermission:
+            "Template usa imagens para podermos gerar legendas para você. Suas fotos serão armazenadas de forma segura e não serão compartilhadas com ninguém.",
+          cameraPermission:
+            "Template usa a câmera para tirar fotos e podermos gerar legendas para você. Suas fotos serão armazenadas de forma segura e não serão compartilhadas com ninguém.",
+        },
+      ],
       [
         "react-native-google-mobile-ads",
         {
@@ -81,7 +81,7 @@ export default {
       //     organization: "legendei",
       //   },
       // ],
-      // "expo-apple-authentication",
+      "expo-apple-authentication",
     ],
     experiments: {
       typedRoutes: true,

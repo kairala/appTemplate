@@ -6,6 +6,9 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "prebuild": "turbo prebuild",
+    "ios": "turbo ios",
+    "android": "turbo android",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {

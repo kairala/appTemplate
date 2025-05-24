@@ -2,8 +2,6 @@ import { Tabs } from "expo-router";
 import { Platform, View } from "react-native";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { Quote } from "~/lib/icons/QuoteIcon";
-import { HistoryIcon } from "~/lib/icons/HistoryIcon";
-import { Settings } from "~/lib/icons/Settings";
 import {
   BannerAd,
   BannerAdSize,
@@ -22,7 +20,7 @@ export default function TabLayout() {
           headerShown: true,
         }}
       >
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="history"
           options={{
             title: "",
@@ -37,7 +35,7 @@ export default function TabLayout() {
               );
             },
           }}
-        />
+        /> */}
 
         <Tabs.Screen
           name="index"
@@ -56,7 +54,7 @@ export default function TabLayout() {
           }}
         />
 
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="settings"
           options={{
             title: "",
@@ -71,7 +69,7 @@ export default function TabLayout() {
               );
             },
           }}
-        />
+        /> */}
       </Tabs>
 
       {me?.data.data.plan === "free" && (

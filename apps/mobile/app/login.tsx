@@ -1,12 +1,12 @@
 import * as React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "~/components/ui/button";
 import { Text } from "~/components/ui/text";
 import { useRouter } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-// import * as WebBrowser from "expo-web-browser";
+import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
 // import * as AppleAuthentication from "expo-apple-authentication";
 // import { useAppleSignInMutation } from "../src/features/auth/useAppleSignin";
@@ -20,6 +20,7 @@ import {
 import { useSignInMutation } from "@workspace/integration/features/auth/signIn/mutation";
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
+import Svg, { Path } from "react-native-svg";
 
 export default function Screen() {
   const router = useRouter();
@@ -38,11 +39,11 @@ export default function Screen() {
   //   },
   // });
 
-  // React.useEffect(() => {
-  //   if (isAuthenticated) {
-  //     router.replace("/(tabs)");
-  //   }
-  // }, [isAuthenticated]);
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/(tabs)");
+    }
+  }, [isAuthenticated]);
 
   const {
     control,
@@ -61,7 +62,7 @@ export default function Screen() {
       await setAccessToken(data.data.data.accessToken);
       await setRefreshToken(data.data.data.refreshToken);
 
-      // router.replace("/(tabs)");
+      router.replace("/(tabs)");
     },
     onError: (error) => {
       console.error("Login error:", error);
@@ -76,40 +77,40 @@ export default function Screen() {
     });
   };
 
-  // const googleSignIn = async () => {
-  //   try {
-  //     const callbackUrl = Linking.createURL("", { scheme: "legendei" });
+  const googleSignIn = async () => {
+    try {
+      const callbackUrl = Linking.createURL("", { scheme: "template" });
 
-  //     let result = await WebBrowser.openAuthSessionAsync(
-  //       `${process.env.EXPO_PUBLIC_API_URL}/auth/google`,
-  //       callbackUrl
-  //     );
+      let result = await WebBrowser.openAuthSessionAsync(
+        `${process.env.EXPO_PUBLIC_API_URL}/auth/google`,
+        callbackUrl
+      );
 
-  //     if (result.type === "success") {
-  //       const url = new URL(result.url);
-  //       const accessToken = url.searchParams.get("accessToken");
-  //       const refreshToken = url.searchParams.get("refreshToken");
-  //       const error = url.searchParams.get("error");
+      if (result.type === "success") {
+        const url = new URL(result.url);
+        const accessToken = url.searchParams.get("accessToken");
+        const refreshToken = url.searchParams.get("refreshToken");
+        const error = url.searchParams.get("error");
 
-  //       if (error) {
-  //         setGoogleError(error);
-  //         return;
-  //       }
+        if (error) {
+          setGoogleError(error);
+          return;
+        }
 
-  //       if (!accessToken || !refreshToken) {
-  //         console.error("Missing access token or refresh token");
-  //         return;
-  //       }
+        if (!accessToken || !refreshToken) {
+          console.error("Missing access token or refresh token");
+          return;
+        }
 
-  //       await setAccessToken(accessToken);
-  //       await setRefreshToken(refreshToken);
+        await setAccessToken(accessToken);
+        await setRefreshToken(refreshToken);
 
-  //       router.replace("/(tabs)");
-  //     }
-  //   } catch (error) {
-  //     console.log("Error", error);
-  //   }
-  // };
+        router.replace("/(tabs)");
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
 
   return (
     <View className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
@@ -183,7 +184,7 @@ export default function Screen() {
       <View className="w-full flex flex-col gap-4 items-center mt-2 my-4">
         <Text className="">ou</Text>
 
-        {/* <TouchableOpacity
+        <TouchableOpacity
           onPress={googleSignIn}
           className="w-[200px] flex-row items-center justify-center bg-white py-3 px-4 rounded-md shadow-sm border border-gray-300"
         >
@@ -210,7 +211,7 @@ export default function Screen() {
             </View>
           </View>
           <Text className="text-gray-700 font-medium">Entrar com Google</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         {/* {Platform.OS === "ios" && (
           <AppleAuthentication.AppleAuthenticationButton
