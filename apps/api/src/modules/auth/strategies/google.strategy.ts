@@ -13,6 +13,7 @@ import { ProviderEnum } from '../../../db/models/user/provider.enum';
 import { Sequelize } from 'sequelize-typescript';
 import { I18nService } from 'nestjs-i18n';
 import { ValidateUserResponseDto } from '../dto/validate/response.dto';
+import { Request } from 'express';
 
 @Injectable()
 export default class GoogleStrategy extends PassportStrategy(
@@ -31,16 +32,25 @@ export default class GoogleStrategy extends PassportStrategy(
       clientSecret: configService.getOrThrow<string>('GOOGLE_CLIENT_SECRET'),
       callbackURL: `${configService.getOrThrow<string>('API_HOST')}/auth/google/redirect`,
       scope: ['email', 'profile'],
+      passReqToCallback: true,
+    });
+  }
+
+  authenticate(req: Request) {
+    return super.authenticate(req, {
+      state: req.query.state || null,
     });
   }
 
   async validate(
+    request: any,
     _accessToken: string,
     _refreshToken: string,
     profile: Profile,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    done: VerifyCallback,
+    _done: VerifyCallback,
   ): Promise<ValidateUserResponseDto> {
+    const { state } = request.query;
+
     const { emails } = profile;
 
     if (!emails || emails.length === 0) {
@@ -84,6 +94,7 @@ export default class GoogleStrategy extends PassportStrategy(
         email: user.email,
         name: user.name,
         provider: user.provider,
+        state,
       };
     });
   }

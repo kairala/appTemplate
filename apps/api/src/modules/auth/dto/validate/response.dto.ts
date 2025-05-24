@@ -5,4 +5,5 @@ export class ValidateUserResponseDto {
   email: string;
   provider: ProviderEnum;
   name: string;
+  state?: string | null;
 }
