@@ -27,7 +27,6 @@ export class GoogleSuccessController {
     @Res() res: Response,
   ) {
     const tokens = await this.buildTokenUseCase.execute(req.user);
-    console.log('State: ', req.user.state);
 
     if (req.user.state) {
       return res.redirect(req.user.state);

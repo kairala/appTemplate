@@ -1,3 +1,4 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
 "use client";
 
 import useAuthSession from "@workspace/integration/adapters/authSessionProvider";
@@ -13,6 +14,7 @@ export const useAxios = () => {
     setAccessToken,
     setRefreshToken,
     logout,
+    onUnauthorized,
   } = useAuthSession();
 
   const executeRefreshToken = useCallback(async () => {
@@ -35,6 +37,7 @@ export const useAxios = () => {
     } catch (error) {
       console.error("Error refreshing token: ", error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshToken]);
 
   useEffect(() => {
@@ -50,6 +53,7 @@ export const useAxios = () => {
 
       executeRefreshToken();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAccessExpired, isRefreshExpired, accessToken, refreshToken]);
 
   const axiosInstance = axios.create({
@@ -78,6 +82,7 @@ export const useAxios = () => {
         if (error.response.status === 401) {
           console.error("Unauthorized error: ", error);
           logout();
+          onUnauthorized?.();
         }
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx

@@ -1,6 +1,8 @@
 "use client";
 
+import { ROUTES } from "@/src/config/routes";
 import { AuthProvider } from "@workspace/integration/adapters/authSessionProvider";
+import { useRouter } from "next/navigation";
 
 const buildKey = (key: string) => {
   if (typeof window === "undefined") {
@@ -15,6 +17,8 @@ export const AuthProviderWrapper = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const router = useRouter();
+
   return (
     <AuthProvider
       setAccessToken={async (accessToken: string): Promise<boolean> => {
@@ -55,6 +59,9 @@ export const AuthProviderWrapper = ({
 
         window.localStorage.removeItem(buildKey("accessToken"));
         window.localStorage.removeItem(buildKey("refreshToken"));
+      }}
+      onUnauthorized={() => {
+        router.replace(ROUTES.SIGN_IN);
       }}
     >
       {children}

@@ -29,6 +29,7 @@ interface AuthContextValue extends AuthState {
   setAccessToken: (accessToken: string) => Promise<boolean>;
   setRefreshToken: (refreshToken: string) => Promise<boolean>;
   logout: () => Promise<void>;
+  onUnauthorized?: () => void;
   isAccessExpired: boolean;
   isRefreshExpired: boolean;
   accessToken: string | null;
@@ -44,6 +45,7 @@ interface AuthProviderProps {
   setRefreshToken: (refreshToken: string) => Promise<boolean>;
   getAccessToken: () => Promise<string | null>;
   getRefreshToken: () => Promise<string | null>;
+  onUnauthorized?: () => void;
   logout: () => Promise<void>;
   children: ReactNode;
 }
@@ -55,6 +57,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   logout,
   setAccessToken,
   setRefreshToken,
+  onUnauthorized,
 }) => {
   const [state, setState] = useState<AuthState>({
     isAuthenticated: false,
@@ -120,6 +123,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     setRefreshToken,
     isAccessExpired,
     isRefreshExpired,
+    onUnauthorized,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

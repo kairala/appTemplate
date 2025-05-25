@@ -1,4 +1,5 @@
 import { AuthProvider } from "@workspace/integration/adapters/authSessionProvider";
+import { useRouter } from "expo-router";
 import * as SecureStorage from "expo-secure-store";
 
 export const AuthProviderWrapper = ({
@@ -6,6 +7,8 @@ export const AuthProviderWrapper = ({
 }: {
   children: React.JSX.Element;
 }) => {
+  const router = useRouter();
+
   return (
     <AuthProvider
       setAccessToken={async (accessToken: string): Promise<boolean> => {
@@ -25,6 +28,9 @@ export const AuthProviderWrapper = ({
       logout={async (): Promise<void> => {
         await SecureStorage.deleteItemAsync("accessToken");
         await SecureStorage.deleteItemAsync("refreshToken");
+      }}
+      onUnauthorized={() => {
+        router.dismissTo("/login");
       }}
     >
       {children}

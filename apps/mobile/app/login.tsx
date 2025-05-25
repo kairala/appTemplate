@@ -81,8 +81,13 @@ export default function Screen() {
     try {
       const callbackUrl = Linking.createURL("", { scheme: "template" });
 
+      const signInUrl = new URL(
+        `${process.env.EXPO_PUBLIC_API_URL}/auth/google`
+      );
+      signInUrl.searchParams.set("state", callbackUrl);
+
       let result = await WebBrowser.openAuthSessionAsync(
-        `${process.env.EXPO_PUBLIC_API_URL}/auth/google`,
+        signInUrl.toString(),
         callbackUrl
       );
 
