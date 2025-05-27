@@ -21,6 +21,7 @@ import { ForgotPasswordToken } from './forgotPasswordToken.model';
 import { RefreshToken } from './refreshToken.model';
 import { StorageFile } from '../storage/storageFile.model';
 import { StripeCustomer } from './stripeCustomer.model';
+import { UserPermissionGroup } from 'src/db/models/permission/userPermissionGroup.model';
 
 @Table({
   tableName: 'users',
@@ -96,6 +97,12 @@ export class User extends Model {
     onUpdate: 'CASCADE',
   })
   declare stripeCustomer: StripeCustomer;
+
+  @HasMany(() => UserPermissionGroup, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  declare permissionGroups?: UserPermissionGroup[];
 
   public async validatePassword(password: string) {
     if (!this.password) {

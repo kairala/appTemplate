@@ -7,6 +7,10 @@ import { ForgotPasswordToken } from './models/user/forgotPasswordToken.model';
 import { RefreshToken } from './models/user/refreshToken.model';
 import { StorageFile } from './models/storage/storageFile.model';
 import { StripeCustomer } from './models/user/stripeCustomer.model';
+import { PermissionGroup } from 'src/db/models/permission/permissionGroup.model';
+import { Permission } from 'src/db/models/permission/permission.model';
+import { PermissionGroupPermission } from 'src/db/models/permission/permissionGroupPermission.model';
+import { UserPermissionGroup } from 'src/db/models/permission/userPermissionGroup.model';
 
 @Module({
   controllers: [],
@@ -43,6 +47,10 @@ import { StripeCustomer } from './models/user/stripeCustomer.model';
             RefreshToken,
             StripeCustomer,
             StorageFile,
+            PermissionGroup,
+            Permission,
+            PermissionGroupPermission,
+            UserPermissionGroup,
           ],
           sync: {
             alter: false,
